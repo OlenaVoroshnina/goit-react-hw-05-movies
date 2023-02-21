@@ -10,3 +10,19 @@ export const getTrendingMovie = async () => {
 
     return data;
 };
+
+export const getMovieById = async (movieId) => {
+    const {data} = await axios.get(`/movie/${movieId}?api_key=3935c979547c0c6651e8430ea668493f`);
+    console.log(data);
+    // const movies = transformMoviesData(data);
+
+    return data;
+};
+
+export const getMovieByIdCast = async (movieId) => {
+    const {data} = await axios.get(`/movie/${movieId}/credits?api_key=3935c979547c0c6651e8430ea668493f`);
+    console.log(data);
+    // const movies = transformMoviesData(data);
+
+    return data;
+};

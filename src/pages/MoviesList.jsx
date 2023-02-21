@@ -1,4 +1,5 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
+
 
 export const MoviesList = ({movies}) => {
     return (
@@ -10,11 +11,12 @@ export const MoviesList = ({movies}) => {
             gap: '10px',
     
             }}>
-            {movies.map(movie => {
+            {movies.length > 0 && movies.map(movie => {
               const { id, title } = movie;
-              return <NavLink key={id}>{title}</NavLink>;
+              return <NavLink to={`/movies/${id}`} key={id}>{title}</NavLink>;
             })}
           </ul>
+          <Outlet/>
         </>
       );
 }

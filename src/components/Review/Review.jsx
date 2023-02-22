@@ -29,9 +29,9 @@ const Review = () => {
       {isLoading && <Loader />}
       {reviews.length > 0 ? (
         reviews.map(review => {
-          const { author, content } = review;
+          const { author, content, id } = review;
           return (
-            <li key={author}>
+            <li key={id}>
               <p>Autor: {author}</p>
               <p>{content} </p>
             </li>

@@ -3,6 +3,7 @@ import { useParams, useLocation, NavLink, Outlet, Link  } from 'react-router-dom
 import { getMovieById } from '../service/service';
 import { Loader } from 'components/Loader/Loader';
 import { MovieItem } from 'components/MovieItem/MovieItem';
+import { routes } from 'helpers/routes';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -29,7 +30,7 @@ const MovieDetails = () => {
   return (
     <>
       {isLoading && <Loader />}
-      <Link to={location.state?.from}>
+      <Link to={location.state?.from ?? routes.HOME}>
         <div>Go back</div>{' '}
       </Link>
       {Boolean(details) && <MovieItem movie={details} />}
@@ -37,7 +38,7 @@ const MovieDetails = () => {
         <p>Additional information</p>
         <ul>
           <li>
-            <NavLink to="cast" state={{ from: location }}>
+            <NavLink to="cast">
               Cast
             </NavLink>
           </li>

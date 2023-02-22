@@ -7,7 +7,7 @@ import { MoviesList } from './MoviesList';
 
 const Movies = () => {
 
-  const [setQuery] = useState('');
+  const [query, setQuery] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [movies, setMovies] = useState([]);

@@ -1,10 +1,13 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { Suspense } from 'react';
+import { NavLink, Outlet, useLocation } from "react-router-dom";
+import { Loader } from 'components/Loader/Loader';
 
 
 export const MoviesList = ({movies}) => {
+  const location = useLocation();
     return (
         <>
-          <h1>Trending today</h1>
+          
           <ul style = {{
             display:'flex',
             flexDirection: 'column',
@@ -13,10 +16,12 @@ export const MoviesList = ({movies}) => {
             }}>
             {movies.length > 0 && movies.map(movie => {
               const { id, title } = movie;
-              return <NavLink to={`/movies/${id}`} key={id}>{title}</NavLink>;
+              return <NavLink to={`/movies/${id}`} state={{ from: location }} key={id}>{title}</NavLink>;
             })}
           </ul>
-          <Outlet/>
+          <Suspense fallback={<Loader />}>
+            <Outlet />
+          </Suspense>
         </>
       );
 }

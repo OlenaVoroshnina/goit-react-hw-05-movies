@@ -1,36 +1,30 @@
-import { Routes, Route, Navigate } from "react-router-dom";
-import { Outlet } from "react-router-dom";
+import { Routes, Route, Navigate } from 'react-router-dom';
+import { lazy, Suspense } from 'react';
+import { Loader } from './Loader/Loader';
 
-import { Header } from "./Header/Header";
-import { Home } from "pages/Home";
-import { MovieDetails } from "pages/MovieDetails";
-import { Cast } from "./Cast/Cast";
+const Header = lazy(() => import('./Header/Header'));
+const Home = lazy(() => import('pages/Home'));
+const MovieDetails = lazy(() => import('pages/MovieDetails'));
+const Cast = lazy(() => import('./Cast/Cast'));
+const Review = lazy(() => import('./Review/Review'));
+const Movies = lazy(() => import('pages/Movies'));
 
 export const App = () => {
   return (
-    <div
-      // style={{
-      //   height: '100vh',
-      //   display: 'flex',
-      //   justifyContent: 'center',
-      //   alignItems: 'center',
-      //   fontSize: 40,
-      //   color: '#010101'
-      // }}
-    >
-      
-      <Routes>
-        <Route path="/" element = {<Header/>}>
-          <Route index element = {<Home/>}/>
-          <Route path="/movies"/>
-          <Route path="/movies/:movieId" element = {<MovieDetails/>}/>
-            <Route path="/movies/:movieId/cast" element = {<Cast/>}/>
-            <Route path="/movies/:movieId/review" element = {<MovieDetails/>}/>
-        </Route>
-        <Route path = '*' element = {<Navigate to = '/' />}/>
-        
-      </Routes>
-      <Outlet/>
+    <div>
+      <Suspense fallback={<Loader />}>
+        <Routes>
+          <Route path="/" element={<Header />}>
+            <Route index element={<Home />} />
+            <Route path="/movies" element={<Movies />} />
+            <Route path="/movies/:movieId" element={<MovieDetails />}>
+              <Route path="cast" element={<Cast />} />
+              <Route path="review" element={<Review />} />
+            </Route>
+            <Route path="*" element={<Navigate to="/" />} />
+          </Route>
+        </Routes>
+      </Suspense>
     </div>
   );
 };

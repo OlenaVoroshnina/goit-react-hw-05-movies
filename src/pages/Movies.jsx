@@ -7,7 +7,7 @@ import { MoviesList } from './MoviesList';
 
 const Movies = () => {
 
-  const [query, setQuery] = useState('');
+  // const [query, setQuery] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [movies, setMovies] = useState([]);
@@ -32,7 +32,7 @@ const Movies = () => {
   }, [movieName]);
 
   const handleSearchbarSubmit = query => {
-    setQuery(query);
+    // setQuery(query);
     setSearchParams({query});
     setMovies([]);
     setError(null);

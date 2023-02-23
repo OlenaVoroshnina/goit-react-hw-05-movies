@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import { getTrendingMovie } from 'service/service';
+import PropTypes from 'prop-types';
 
 import { Loader } from 'components/Loader/Loader';
 import { MoviesList } from './MoviesList';
+import { Title } from 'components/Header/Header.styled';
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
@@ -21,14 +23,13 @@ const Home = () => {
         setIsLoading(false);
       }
     };
-
     getMovie();
   }, []);
 
   return (
     <>
       {isLoading && <Loader />}
-      <h1>Trending today</h1>
+      <Title>Trending today</Title>
       {movies && <MoviesList movies={movies} />}
       {error && <h1>{error}</h1>}
     </>
@@ -36,3 +37,9 @@ const Home = () => {
 };
 
 export default Home;
+
+Home.propTypes = {
+  error: PropTypes.string,
+  isLoading: PropTypes.bool,
+  movies: PropTypes.array,
+};

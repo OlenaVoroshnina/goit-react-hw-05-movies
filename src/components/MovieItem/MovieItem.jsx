@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
+import { ItemMovie, TitleMovie, Discription } from 'pages/MovieDetails.styled';
 
 export const MovieItem = ({ movie }) => {
   const { title, poster_path, overview, genres, vote_average } = movie;
   return (
     <div>
-      <div>
+      <ItemMovie>
         {Boolean(poster_path) && (
           <img
             src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
@@ -12,10 +13,10 @@ export const MovieItem = ({ movie }) => {
             width=""
           />
         )}
-        <div>
-          <h2>{title}</h2>
+        <Discription>
+          <TitleMovie>{title}</TitleMovie>
           <p>
-            User score: {vote_average ? Math.round(vote_average * 10) : ''}%
+            <b>User score:</b> {vote_average ? Math.round(vote_average * 10) : ''}%
           </p>
           <p>
             <b>Overview</b>
@@ -25,8 +26,8 @@ export const MovieItem = ({ movie }) => {
             <b>Genres</b>
           </p>
           <p>{genres ? genres.map(genre => genre.name).join(', ') : ''}</p>
-        </div>
-      </div>
+        </Discription>
+      </ItemMovie>
     </div>
   );
 };

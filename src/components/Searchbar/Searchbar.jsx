@@ -40,7 +40,7 @@ export default function Searchbar({ onSubmit }) {
       </SearchForm>
     </SearchbarHeader>
   );
-}
+};
 
 Searchbar.propTypes = {
   onSubmit: PropTypes.func,

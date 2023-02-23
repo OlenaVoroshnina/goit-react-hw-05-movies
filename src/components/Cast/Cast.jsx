@@ -33,16 +33,9 @@ const Cast = () => {
           const { profile_path, name, character, id } = cast;
           return (
             <li key={id}>
-              {Boolean(profile_path) ? (
+              {Boolean(profile_path) && (
                 <img
                   src={`https://image.tmdb.org/t/p/w500/${profile_path}`}
-                  alt={name}
-                  width="200"
-                  height="300"
-                />
-              ) : (
-                <img
-                  src="../images/default-avatar.png"
                   alt={name}
                   width="200"
                   height="300"

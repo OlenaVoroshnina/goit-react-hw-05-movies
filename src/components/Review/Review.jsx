@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { Loader } from 'components/Loader/Loader';
 import { getMovieByIdReview } from 'service/service';
 
@@ -32,7 +33,7 @@ const Review = () => {
           const { author, content, id } = review;
           return (
             <li key={id}>
-              <p>Autor: {author}</p>
+              <p><b>Author: {author}</b></p>
               <p>{content} </p>
             </li>
           );
@@ -45,3 +46,15 @@ const Review = () => {
   );
 };
 export default Review;
+
+Review.propTypes = {
+  error: PropTypes.string,
+  isLoading: PropTypes.bool,
+  reviews: PropTypes.arrayOf(
+    PropTypes.shape({
+      author: PropTypes.string.isRequired,
+      content: PropTypes.string.isRequired,
+      id: PropTypes.string.isRequired,
+    })
+  ),
+};

@@ -1,9 +1,11 @@
 import { useState, useEffect, Suspense } from 'react';
 import { useParams, useLocation, NavLink, Outlet, Link  } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { getMovieById } from '../service/service';
 import { Loader } from 'components/Loader/Loader';
 import { MovieItem } from 'components/MovieItem/MovieItem';
 import { routes } from 'helpers/routes';
+import { GoBack, LinkBack } from './MovieDetails.styled';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -30,9 +32,9 @@ const MovieDetails = () => {
   return (
     <>
       {isLoading && <Loader />}
-      <Link to={location.state?.from ?? routes.HOME}>
-        <div>Go back</div>{' '}
-      </Link>
+      <LinkBack to={location.state?.from ?? routes.HOME}>
+        <GoBack>Go back</GoBack>{' '}
+      </LinkBack>
       {Boolean(details) && <MovieItem movie={details} />}
       <div>
         <p>Additional information</p>
@@ -51,8 +53,13 @@ const MovieDetails = () => {
       <Suspense fallback={<Loader />}>
         <Outlet />
       </Suspense>
-      
     </>
   );
 };
 export default MovieDetails;
+
+MovieDetails.propTypes = {
+  error: PropTypes.string,
+  isLoading: PropTypes.bool,
+  details: PropTypes.array,
+};

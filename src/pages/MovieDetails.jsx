@@ -1,5 +1,5 @@
 import { useState, useEffect, Suspense } from 'react';
-import { useParams, useLocation, NavLink, Outlet, Link  } from 'react-router-dom';
+import { useParams, useLocation, NavLink, Outlet } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { getMovieById } from '../service/service';
 import { Loader } from 'components/Loader/Loader';
